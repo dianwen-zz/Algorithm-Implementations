@@ -26,26 +26,23 @@ public class MergeSort {
         int totalSize = leftHalf.length + rightHalf.length;
         int[] result = new int[totalSize];
         for(int k = 0; k < totalSize; k++) {
-            int leftValue, rightValue;
-            if(i >= leftHalf.length) {
-                leftValue = Integer.MAX_VALUE;
+            if(i < leftHalf.length && j < rightHalf.length) {
+                if(leftHalf[i] < rightHalf[j]) {
+                    result[k] = leftHalf[i];
+                    i++;
+                }
+                else {
+                    result[k] = rightHalf[j];
+                    j++;
+                }
             }
-            else {
-                leftValue = leftHalf[i];
-            }
-            if(j >= rightHalf.length) {
-                rightValue = Integer.MAX_VALUE;
-            }
-            else {
-                rightValue = rightHalf[j];
-            }
-            if(leftValue < rightValue) {
-                result[k] = leftValue;
-                i++;
-            }
-            else {
-                result[k] = rightValue;
+            else if(i >= leftHalf.length) {
+                result[k] = rightHalf[j];
                 j++;
+            }
+            else {
+                result[k] = leftHalf[i];
+                i++;
             }
         }
         return result;
