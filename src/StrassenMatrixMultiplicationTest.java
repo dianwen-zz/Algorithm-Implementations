@@ -24,19 +24,4 @@ public class StrassenMatrixMultiplicationTest {
                 {155, 104, 108, 113}};
         assertArrayEquals(result, StrassenMatrixMultiplication.multiply(a, b));
     }
-
-    @Test
-    public void testMergeSortMatchesBruteForceCount() {
-        int[] randomArray = createRandomArray(32, 100, 0);
-        assertEquals((long) CountInversions.bruteForceCountInversions(randomArray), (long) CountInversions.countInversionsAndMergeSort(randomArray));
-    }
-
-    public static int[] createRandomArray(int arraySize, int maxValue, int minValue) {
-        Random rand = new Random();
-        int[] array = new int[arraySize];
-        for(int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(maxValue - minValue) + minValue;
-        }
-        return array;
-    }
 }
