@@ -10,6 +10,20 @@ public class ClosestPair {
     public static final Comparator X_COMPARATOR = new CompareByX();
     public static final Comparator Y_COMPARATOR = new CompareByY();
 
+    public static Point2D[] bruteForceFindClosestPair(Point2D[] points) {
+        double closestDistance = Double.MAX_VALUE;
+        Point2D[] closestPair = null;
+        for(int i = 0; i < points.length; i++) {
+            for(int j = i + 1; j < points.length; j++) {
+                if(points[i].distance(points[j]) < closestDistance) {
+                    closestDistance = points[i].distance(points[j]);
+                    closestPair = new Point2D[]{points[i], points[j]};
+                }
+            }
+        }
+        return closestPair;
+    }
+
     public static Point2D[] findClosestPair(Point2D[] points) {
         if(points.length == 1) {
             return null;
