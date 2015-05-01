@@ -20,41 +20,6 @@ public class CountInversions {
         return leftInversions + rightInversions + splitInversions;
     }
 
-//    private static int countSplitInversionsAndMerge(int[] leftHalf, int[] rightHalf, int[] result) {
-//        int i = 0;
-//        int j = 0;
-//        int totalSize = leftHalf.length + rightHalf.length;
-//        result = new int[totalSize];
-//        int inversions = 0;
-//        for(int k = 0; k < totalSize; k++) {
-//            int leftValue, rightValue;
-//            if(i >= leftHalf.length) {
-//                leftValue = Integer.MAX_VALUE;
-//            }
-//            else {
-//                leftValue = leftHalf[i];
-//            }
-//            if(j >= rightHalf.length) {
-//                rightValue = Integer.MAX_VALUE;
-//            }
-//            else {
-//                rightValue = rightHalf[j];
-//            }
-//            if(leftValue < rightValue) {
-//                result[k] = leftValue;
-//                i++;
-//            }
-//            else {
-//                result[k] = rightValue;
-//                j++;
-//                if(i < leftHalf.length) { // Found inversion, copying from the right half before the left half is exhausted
-//                    inversions += leftHalf.length - i; // The number of inversions caused is the remaining length of the left array
-//                }
-//            }
-//        }
-//        return inversions;
-//    }
-
     private static int countSplitInversionsAndMerge(int[] leftHalf, int[] rightHalf, int[] result) {
         int i = 0;
         int j = 0;
