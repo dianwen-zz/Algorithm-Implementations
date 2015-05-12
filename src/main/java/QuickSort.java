@@ -17,15 +17,16 @@ public class QuickSort {
 
         Random r = new Random();
         int pivotIndex = r.nextInt(array.length);
-        partition(array, pivotIndex);
+        int pivotValue = array[pivotIndex];
+        pivotIndex = partition(array, pivotIndex);
 
         int[] leftPartition = new int[pivotIndex];
-        int[] rightParition = new int[array.length - pivotIndex];
+        int[] rightParition = new int[array.length - pivotIndex-1];
         for(int i = 0 ; i < pivotIndex; i++) {
             leftPartition[i] = array[i];
         }
-        for(int i = pivotIndex; i < array.length; i++) {
-            rightParition[i - pivotIndex] = array[i];
+        for(int i = pivotIndex + 1; i < array.length; i++) {
+            rightParition[i - pivotIndex - 1] = array[i];
         }
 
         leftPartition = quickSort(leftPartition);
@@ -35,14 +36,15 @@ public class QuickSort {
         for(int i = 0; i < leftPartition.length; i++) {
             sorted[i] = leftPartition[i];
         }
-        for(int i = leftPartition.length; i < array.length; i++) {
-            sorted[i] = rightParition[i - leftPartition.length];
+        sorted[pivotIndex] = pivotValue;
+        for(int i = pivotIndex + 1; i < array.length; i++) {
+            sorted[i] = rightParition[i - pivotIndex - 1];
         }
 
         return sorted;
     }
 
-    public static void partition(int[] array, int pivotIndex) {
+    public static int partition(int[] array, int pivotIndex) {
         //Swap pivot with first element before moving elements around the pivot
         int pivotValue = array[pivotIndex];
         array[pivotIndex] = array[0];
@@ -63,5 +65,6 @@ public class QuickSort {
         array[0] = array[boundary - 1];
         array[boundary - 1] = pivotValue;
 
+        return boundary - 1;
     }
 }
