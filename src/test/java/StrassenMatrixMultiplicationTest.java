@@ -1,6 +1,7 @@
-import org.junit.Test;
+package test.java;
 
-import java.util.Random;
+import main.java.StrassenMatrixMultiplication;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 

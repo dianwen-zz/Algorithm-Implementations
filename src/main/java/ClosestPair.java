@@ -1,3 +1,5 @@
+package main.java;
+
 import javafx.geometry.Point2D;
 
 import java.util.Arrays;

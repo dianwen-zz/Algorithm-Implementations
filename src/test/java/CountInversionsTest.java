@@ -1,3 +1,6 @@
+package test.java;
+
+import main.java.CountInversions;
 import org.junit.Test;
 
 import java.util.Random;

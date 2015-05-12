@@ -1,13 +1,12 @@
-import java.lang.reflect.Array;
-import java.util.Random;
+package main.java;
 
 /**
- * Created by dianwen on 4/27/15.
+ * Created by dianwen on 4/28/15.
  */
-public class MergeSort {
-    public static int[] mergeSort(int[] array) {
+public class CountInversions {
+    public static int countInversionsAndMergeSort(int[] array) {
         if(array.length == 1) {
-            return array;
+            return 0;
         }
         int[] leftHalf = new int[array.length/2];
         int[] rightHalf = new int[array.length - array.length/2]; // Account for odd length arrays
@@ -17,23 +16,27 @@ public class MergeSort {
         for(int i = array.length/2; i < array.length; i++) {
             rightHalf[i - array.length/2] = array[i];
         }
-        return merge(mergeSort(leftHalf), mergeSort(rightHalf));
+        int leftInversions = countInversionsAndMergeSort(leftHalf);
+        int rightInversions = countInversionsAndMergeSort(rightHalf);
+        int splitInversions = countSplitInversionsAndMerge(leftHalf, rightHalf, array);
+        return leftInversions + rightInversions + splitInversions;
     }
 
-    private static int[] merge(int[] leftHalf, int[] rightHalf) {
+    private static int countSplitInversionsAndMerge(int[] leftHalf, int[] rightHalf, int[] result) {
         int i = 0;
         int j = 0;
+        int inversions = 0;
         int totalSize = leftHalf.length + rightHalf.length;
-        int[] result = new int[totalSize];
         for(int k = 0; k < totalSize; k++) {
             if(i < leftHalf.length && j < rightHalf.length) {
-                if(leftHalf[i] < rightHalf[j]) {
+                if(leftHalf[i] <= rightHalf[j]) {
                     result[k] = leftHalf[i];
                     i++;
                 }
                 else {
                     result[k] = rightHalf[j];
                     j++;
+                    inversions += leftHalf.length - i;
                 }
             }
             else if(i >= leftHalf.length) {
@@ -45,6 +48,18 @@ public class MergeSort {
                 i++;
             }
         }
-        return result;
+        return inversions;
+    }
+
+    public static int bruteForceCountInversions(int[] array) {
+        int inversions = 0;
+        for(int i = 0; i < array.length; i++) {
+            for(int j = i + 1; j < array.length; j++) {
+                if(array[j] < array[i]) {
+                    inversions++;
+                }
+            }
+        }
+        return inversions;
     }
 }

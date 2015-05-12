@@ -1,4 +1,4 @@
-package support;
+package test.resources;
 
 /**
  * From http://zijab.blogspot.com/2007/06/one-way-to-test-two-dimensional-array.html

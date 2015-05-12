@@ -1,4 +1,7 @@
+package test.java;
+
 import javafx.geometry.Point2D;
+import main.java.ClosestPair;
 import org.junit.Test;
 
 import java.util.Random;

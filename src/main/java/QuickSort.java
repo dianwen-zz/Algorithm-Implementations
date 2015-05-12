@@ -1,4 +1,4 @@
-package src;
+package main.java;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -19,24 +19,24 @@ public class QuickSort {
         int pivotIndex = r.nextInt(array.length);
         partition(array, pivotIndex);
 
-        int[] leftHalf = new int[pivotIndex];
-        int[] rightHalf = new int[array.length - pivotIndex];
+        int[] leftPartition = new int[pivotIndex];
+        int[] rightParition = new int[array.length - pivotIndex];
         for(int i = 0 ; i < pivotIndex; i++) {
-            leftHalf[i] = array[i];
+            leftPartition[i] = array[i];
         }
         for(int i = pivotIndex; i < array.length; i++) {
-            rightHalf[i - pivotIndex] = array[i];
+            rightParition[i - pivotIndex] = array[i];
         }
 
-        leftHalf = quickSort(leftHalf);
-        rightHalf = quickSort(rightHalf);
+        leftPartition = quickSort(leftPartition);
+        rightParition = quickSort(rightParition);
 
         int[] sorted = new int[array.length];
-        for(int i = 0; i < leftHalf.length; i++) {
-            sorted[i] = leftHalf[i];
+        for(int i = 0; i < leftPartition.length; i++) {
+            sorted[i] = leftPartition[i];
         }
-        for(int i = leftHalf.length; i < array.length; i++) {
-            sorted[i] = rightHalf[i - leftHalf.length];
+        for(int i = leftPartition.length; i < array.length; i++) {
+            sorted[i] = rightParition[i - leftPartition.length];
         }
 
         return sorted;

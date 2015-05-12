@@ -1,8 +1,10 @@
+package test.java;
+
+import main.java.MergeSort;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 /**
