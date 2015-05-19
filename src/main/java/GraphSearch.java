@@ -9,6 +9,8 @@ import java.util.Queue;
  * Created by dianwen on 5/18/15.
  */
 public class GraphSearch {
+    boolean[] visited;
+
     public static void bfs(Graph g, int vertex) {
         boolean[] visited = new boolean[g.getVerticiesCount()];
         visited[vertex] = true;
@@ -27,23 +29,29 @@ public class GraphSearch {
         }
     }
 
-    public static void dfs(Graph g, int vertex, boolean[] visited) {
+    public void dfs(Graph g, int vertex) {
+        visited = new boolean[g.getVerticiesCount()];
+        dfsHelper(g, vertex);
+    }
+
+    private void dfsHelper(Graph g, int vertex) {
         visited[vertex] = true;
         System.out.println(vertex);
         for(int v : g.getNeighboringVerticies(vertex)) {
             if(!visited[v]) {
-                dfs(g, v, visited);
+                dfsHelper(g, v);
             }
         }
     }
 
     public static void main(String[] args) {
-        Integer[][] adjacencyMatrix = {{1, 2, 5}, {0, 2, 3, 5}, {0, 1, 3, 4}, {1, 2, 4}, {2, 3}, {0, 1}};
+        Integer[][] adjacencyMatrix = {{1, 2}, {0, 3}, {0, 3, 4}, {1, 2, 5}, {2, 5}, {3, 4}};
         Graph g = new Graph(adjacencyMatrix);
         System.out.println("BFS:");
-        bfs(g, 5);
+        bfs(g, 0);
         System.out.println("\nDFS:");
-        dfs(g, 5, new boolean[g.getVerticiesCount()]);
+        GraphSearch search = new GraphSearch();
+        search.dfs(g, 0);
 
     }
 }
