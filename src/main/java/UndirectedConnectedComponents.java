@@ -12,7 +12,7 @@ public class UndirectedConnectedComponents {
         List<Integer> connected = new ArrayList<Integer>();
         visited.add(start);
         connected.add(start);
-        Queue<Integer> q = new PriorityQueue<>();
+        Queue<Integer> q = new LinkedList<>();
         q.add(start);
         while(!q.isEmpty()) {
             int currentVertex = q.remove();

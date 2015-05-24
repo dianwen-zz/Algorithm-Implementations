@@ -2,7 +2,7 @@ package main.java;
 
 import main.resources.Graph;
 
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -13,7 +13,7 @@ public class ShortestPath {
     public static int findShortestPath(Graph g, int start, int end) {
         int[] minDistance = new int[g.getVerticiesCount()];
         minDistance[start] = 0;
-        Queue<Integer> q = new PriorityQueue<>();
+        Queue<Integer> q = new LinkedList<>();
         q.add(start);
         while(!q.isEmpty()) {
             int currentVertex = q.remove();

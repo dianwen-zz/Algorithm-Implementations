@@ -44,11 +44,27 @@ public class GraphSearch {
         }
     }
 
+    public static void bfs2(Graph g, int vertex) {
+        boolean[] visited = new boolean[g.getVerticiesCount()];
+        Queue<Integer> toVisit = new PriorityQueue<>();
+        toVisit.add(vertex);
+        while(!toVisit.isEmpty()) {
+            Integer removedVertex = toVisit.remove();
+            if(!visited[removedVertex]) {
+                visited[removedVertex] = true;
+                System.out.println(removedVertex);
+                for(int v : g.getNeighboringVerticies(removedVertex)) {
+                        toVisit.add(v);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Integer[][] adjacencyMatrix = {{1, 2}, {0, 3}, {0, 3, 4}, {1, 2, 5}, {2, 5}, {3, 4}};
         Graph g = new Graph(adjacencyMatrix);
         System.out.println("BFS:");
-        bfs(g, 0);
+        bfs2(g, 0);
         System.out.println("\nDFS:");
         GraphSearch search = new GraphSearch();
         search.dfs(g, 0);
