@@ -5,7 +5,7 @@ package main.resources;
  */
 public class BinarySearchTree {
     Node root;
-
+    
     public static Node find(int value, Node root) {
         if(root.value == value) {
             return root;
@@ -21,6 +21,15 @@ public class BinarySearchTree {
             }
         }
         return null;
+    }
+
+    public static int findHeight(Node n) {
+        if(n == null) {
+            return 0;
+        }
+        int leftHeight = 1 + findHeight(n.leftChild);
+        int rightHeight = 1 + findHeight(n.rightChild);
+        return Math.max(leftHeight, rightHeight);
     }
 
     public static Node findMin(Node n) {
