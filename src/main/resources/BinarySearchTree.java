@@ -5,7 +5,7 @@ package main.resources;
  */
 public class BinarySearchTree {
     Node root;
-    
+
     public static Node find(int value, Node root) {
         if(root.value == value) {
             return root;
