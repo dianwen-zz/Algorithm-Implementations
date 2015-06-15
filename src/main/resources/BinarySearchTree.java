@@ -6,6 +6,10 @@ package main.resources;
 public class BinarySearchTree {
     Node root;
 
+    public static boolean isTreeBalanced(Node n) {
+        return (findMaxHeight(n) - findMinHeight(n)) <= 1;
+    }
+
     public static Node find(int value, Node root) {
         if(root.value == value) {
             return root;
@@ -23,13 +27,22 @@ public class BinarySearchTree {
         return null;
     }
 
-    public static int findHeight(Node n) {
+    public static int findMaxHeight(Node n) {
         if(n == null) {
             return 0;
         }
-        int leftHeight = 1 + findHeight(n.leftChild);
-        int rightHeight = 1 + findHeight(n.rightChild);
-        return Math.max(leftHeight, rightHeight);
+        int leftHeight = findMaxHeight(n.leftChild);
+        int rightHeight = findMaxHeight(n.rightChild);
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    public static int findMinHeight(Node n) {
+        if(n == null) {
+            return 0;
+        }
+        int leftHeight = findMinHeight(n.leftChild);
+        int rightHeight = findMinHeight(n.rightChild);
+        return 1 + Math.min(leftHeight, rightHeight);
     }
 
     public static Node findMin(Node n) {
@@ -146,16 +159,21 @@ public class BinarySearchTree {
         }
     }
 
-    public static void printPreOrder(Node n) {
-        System.out.println(n.value);
+    public static String printPreOrder(Node n, StringBuilder sb) {
+        sb.append(n.value);
+        sb.append(", ");
         if(n.leftChild != null) {
-            printPreOrder(n.leftChild);
+            printPreOrder(n.leftChild, sb);
         }
         if(n.rightChild != null) {
-            printPreOrder(n.rightChild);
+            printPreOrder(n.rightChild, sb);
         }
+        return sb.toString();
     }
 
+    public Node getRoot() {
+        return root;
+    }
 
     public class Node {
         Node parent;
